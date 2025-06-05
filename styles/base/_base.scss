@@ -414,6 +414,15 @@ button{
             }
         }
     }
+    .montantRecevoir{
+        color: green;
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+    .montant-recev{
+        text-align: right;
+        padding: 0 5px;
+    }
     .middle-right{
         padding: 0 2rem;
         .flex-it{
@@ -432,6 +441,16 @@ button{
                 font-weight: bold;
                 // background-color: rgb(152, 191, 242);
             }
+        }
+        .selected-recivers{
+            .choosen-wrapper{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        .confirmer{
+            display: none;
         }
     }
 }

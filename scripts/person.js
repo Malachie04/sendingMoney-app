@@ -1,4 +1,4 @@
-class Person{
+export class Person{
     constructor(id,noms,email,sexe,code_pays,pays,password,age,photo){
         this.id=id;
         this.noms=noms;
@@ -12,7 +12,7 @@ class Person{
     }
 }
 
-class sender extends Person{
+export class sender extends Person{
     constructor(totalAmount){
         super(id,noms,email,sexe,code_pays,pays,password,age,photo);
         this.totalAmount=totalAmount;
@@ -21,7 +21,7 @@ class sender extends Person{
         lancerSimulation(amount);
     }
 }
-class receiver extends Person{
+export class receiver extends Person{
     constructor(recivedAmout){
         super(id,noms,email,sexe,code_pays,pays,password,age,photo);
         this.recivedAmout=recivedAmout;
