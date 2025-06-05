@@ -2,6 +2,7 @@
 
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0A0F2C;
 }
 
 
@@ -288,15 +289,20 @@ button{
 // .display{
 //     display: flex !important;
 // }
-
+.img-size{
+    width: 130px;
+    border-radius: 50%;
+}
+.fa-user-plus{
+    cursor: pointer;
+}
 .wrapper{
     width: 100vw;
     height: 100vh;
-    background-color: aquamarine;
     display: flex;
     .main-aside{
         width: 15%;
-        background-color: black;
+        background-color: #111633;
         color: #fff;
         .logo{
             font-family: "Matemasie", sans-serif;
@@ -315,16 +321,117 @@ button{
                 &:hover{
                     color: #fff;
                     transform: translateX(15px);
+                    font-weight: bold;
                 }
             }
         }
     }
+    .choose-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+
+    .img-size {
+        display: block;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+        position: relative;
+        z-index: 1;
+    }
+
+    // Pseudo-élément attaché à un conteneur spécifique à l’image
+    &::before {
+        content: "Sélectionner";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+        color: #f4f5f8;
+        font-weight: bold;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 2;
+        pointer-events: none; // Pour ne pas bloquer l’interaction avec l’image
+    }
+
+    &:hover::before {
+        opacity: 0.7;
+    }
+
+    span {
+        margin-top: 8px;
+        z-index: 2;
+    }
+    }
+
     .main-middle{
-        background-color: rgb(224, 13, 13);
+        padding-left: 1rem;
+        padding-right: 1rem;
         width: 60%;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        border-right: 2px solid #2C3154;
+        .article-top{
+            background-color: #1B213F;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            color: #fff;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            .user-details{
+                display: flex;
+                padding: 15px;
+                align-items: center;
+                gap: 1rem;
+            }
+                        img{
+            width: 70px;
+            }
+        }
+        .articles-details{
+            .choose-receivers{
+                display: flex;
+
+                overflow-x: scroll;
+                gap: 1rem; /* optionnel, espace entre les éléments */
+                padding: 1rem 0; /* optionnel, un peu de padding */
+                white-space: nowrap; /* évite les sauts de ligne */
+                scrollbar-width: thin; /* Firefox */
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
+            }
+        }
     }
     .middle-right{
+        padding: 0 2rem;
+        .flex-it{
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .middle-right-top{
+            padding: 30px;
+        }
         width: 25%;
-        background-color: rgb(205, 179, 17);
+        .btn-send{
+            padding: 1.5rem 0;
+            button{
+                width: 100%;
+                font-weight: bold;
+                // background-color: rgb(152, 191, 242);
+            }
+        }
     }
 }

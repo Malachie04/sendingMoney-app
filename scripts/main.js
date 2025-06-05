@@ -17,6 +17,8 @@ const transactionHTML=document.querySelector('.card-transaction');
 const detailtransactionTHML=document.querySelector('.details');
 const printTHML=document.querySelector('.print');
 const printerTHML=document.querySelector('.printer');
+const chooseReceiversHTML=document.querySelector('.choose-receivers');
+const selectUSerHTML=document.querySelector('.select-receivers');
 
 
 
@@ -291,114 +293,77 @@ console.log(crypto.randomUUID());
 
 
 
-// User
 async function genererUtilisateurs(nombre) {
-    try {
-      const response = await fetch(`https://randomuser.me/api/?results=${nombre}?nat=fr`);
-      const data = await response.json();
-      
+  try {
+    const response = await fetch(`https://randomuser.me/api/?results=${nombre}&nat=fr`);
+    const data = await response.json();
 
-      //Data
-      console.log(data);
-      // Affichage dans la console
-      data.results.forEach((user, index) => {
-        console.log(`👤 Utilisateur ${index + 1}`);
-        console.log(`Nom : ${user.name.first} ${user.name.last}`);
-        console.log(`Email : ${user.email}`);
-        console.log(`Pays : ${user.location.country}`);
-        console.log(`Photo : ${user.picture.thumbnail}`);
-        console.log('---------------------------');
-      });
-  
-      return data.results; // Tu peux les réutiliser ailleurs
-    } catch (error) {
-      console.error('❌ Erreur lors de la récupération des utilisateurs :', error);
-    }
-  }
-  
-  // Appel de la fonction
-  genererUtilisateurs(5);
-
-
-  //Composant
-
-function toggleSmooth(el) {
-  if (el.classList.contains('display')) {
-    // Masquer doucement
-    el.style.maxHeight = el.scrollHeight + 'px';
-    el.offsetHeight; // force le reflow
-    el.style.opacity = '0';
-    el.style.maxHeight = '0px';
-
-    el.addEventListener('transitionend', function hideAfterTransition() {
-      el.classList.remove('display');
-      el.style.display = 'none';
-      el.removeEventListener('transitionend', hideAfterTransition);
+    data.results.forEach((user, index) => {
+      console.log(`👤 Utilisateur ${index + 1}`);
+      console.log(`Nom : ${user.name.first} ${user.name.last}`);
+      console.log(`Email : ${user.email}`);
+      console.log(`Pays : ${user.location.country}`);
+      console.log(`Photo : ${user.picture.thumbnail}`);
+      console.log('---------------------------');
     });
 
-  } else {
-    // Afficher doucement
-    el.classList.add('display');
-    el.style.display = 'flex'; // on le remet dans le flux
-    el.offsetHeight; // force reflow
-    el.style.maxHeight = el.scrollHeight + 'px';
-    el.style.opacity = '1';
+    return data.results;
+  } catch (error) {
+    console.error('❌ Erreur lors de la récupération des utilisateurs :', error);
   }
 }
 
-// // Ton événement avec transition douce
-// transactionHTML.addEventListener('click', (event) => {
-//   event.preventDefault();
+  
+  // Appel de la fonction
+  // genererUtilisateurs(5);
 
-//   // detailtransactionHTML.classList.toggle('display');
+  //Composant
 
-//     detailtransactionTHML.classList.toggle('display');
-//   // toggleSmooth(detailtransactionTHML); 
-//   // toggleSmooth(printTHML);
-// });
 
-gsap.to(detailtransactionTHML, { 
-  height: "auto", 
-  opacity: 1, 
-  duration: 0.5, 
-  ease: "power2.out",
-  onStart: () => detailtransactionTHML.style.display = 'flex'
-});
-// Pour masquer avec animation
-gsap.to(detailtransactionTHML, { 
-  height: 0, 
-  opacity: 0, 
-  duration: 0.5, 
-  ease: "power2.in",
-  onComplete: () => detailtransactionTHML.style.display = 'none'
+
+selectUSerHTML.addEventListener('click',async (event)=>{
+
+
+  let clickedElement=event.target;
+  const wrapper = clickedElement.closest('.choose-wrapper');
+
+  if(clickedElement.classList.contains('fa-user-plus')){
+      let mydata=await genererUtilisateurs(5);
+      console.log(mydata);
+      
+      mydata.forEach((user)=>{
+        let users=`
+        <div class="choose-wrapper" title="Selectionner" data-userID="${user.login.uuid}">
+            <img src="${user.picture.large}" alt="img" class="img-size">
+            <span>${user.name.first} ${user.name.last}</span>
+        </div>
+      `;
+      chooseReceiversHTML.innerHTML+=users;
+      });
+  }else if(wrapper){
+      let uid = wrapper.dataset.userid;
+    console.log(uid);
+      
+  }
+
+
+
+
+
 });
 
 
 let isVisible = false;
 
-// transactionHTML.addEventListener('click', (event) => {
-//   event.preventDefault();
 
-//   if (!isVisible) {
-//     gsap.to(detailtransactionTHML, { 
-//       height: "auto", 
-//       opacity: 1, 
-//       duration: 0.5, 
-//       ease: "power2.out",
-//       onStart: () => detailtransactionTHML.style.display = 'flex'
-//     });
-//   } else {
-//     gsap.to(detailtransactionTHML, { 
-//       height: 0, 
-//       opacity: 0, 
-//       duration: 0.5, 
-//       ease: "power2.in",
-//       onComplete: () => detailtransactionTHML.style.display = 'none'
-//     });
-//   }
 
-//   isVisible = !isVisible;
-// });
+
+
+
+
+
+
+
 
 printerTHML.addEventListener('click',(event)=>{
   event.preventDefault();
@@ -427,6 +392,29 @@ transactionHTML.addEventListener('click', (event) => {
 
 
 
+function toggleSmoothle(el) {
+  if (el.classList.contains('display')) {
+    // Masquer doucement
+    el.style.maxHeight = el.scrollHeight + 'px';
+    el.offsetHeight; // force le reflow
+    el.style.opacity = '0';
+    el.style.maxHeight = '0px';
+
+    el.addEventListener('transitionend', function hideAfterTransition() {
+      el.classList.remove('display');
+      el.style.display = 'none';
+      el.removeEventListener('transitionend', hideAfterTransition);
+    });
+
+  } else {
+    // Afficher doucement
+    el.classList.add('display');
+    el.style.display = 'flex'; // on le remet dans le flux
+    el.offsetHeight; // force reflow
+    el.style.maxHeight = el.scrollHeight + 'px';
+    el.style.opacity = '1';
+  }
+}
 
 
 function toggleSmooth(el) {
@@ -459,3 +447,20 @@ function toggleSmooth(el) {
     });
   }
 }
+
+
+gsap.to(detailtransactionTHML, { 
+  height: "auto", 
+  opacity: 1, 
+  duration: 0.5, 
+  ease: "power2.out",
+  onStart: () => detailtransactionTHML.style.display = 'flex'
+});
+// Pour masquer avec animation
+gsap.to(detailtransactionTHML, { 
+  height: 0, 
+  opacity: 0, 
+  duration: 0.5, 
+  ease: "power2.in",
+  onComplete: () => detailtransactionTHML.style.display = 'none'
+});
