@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Matemasie&display=swap');
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+.container{
+    padding: 40px 30px;
+    position: relative;
+    width: 1300px;
+    margin: auto;
+}
+
+.title-site{
+     font-family: "Matemasie", sans-serif;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: maroon;
+}
+
+
+
+.container-bottom{
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    gap: 1rem;
+    position: relative;
+    padding: 15PX 0;
+    h2{
+        display: block;
+        font-size: 1.5rem;
+        font-weight: normal;
+        position: relative;
+        z-index: 10;  
+        background-color: #fff;
+    }
+}
+.card{
+    grid-column: span 3;
+    position: relative;
+     display:flex;
+     flex-direction: column;
+      z-index: 1;
+     cursor: pointer;
+    // justify-content: space-around;
+    // background-color: red;
+    vertical-align: bottom;
+    // height: 100%;
+    img{
+       height: 100%;
+       width:100%;
+       object-fit: cover;
+    }
+}
+
+.popularity {
+  font-size: 2rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: radial-gradient(circle,rgba(63, 94, 251, 0.1) 0%, rgba(252, 70, 107, 1) 100%);
+  opacity: 0;          
+  transition: opacity 0.3s ease;
+  pointer-events: none; 
+  z-index: 1;   
+  span{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-weight: bold;
+  }        
+}
+
+.card:hover .popularity {
+  opacity: 1;           /* visible au survol */
+  pointer-events: auto; /* interactif */
+}
+
+/* Pour que le titre soit au-dessus */
+.title {
+  position: relative;
+  z-index: 10;
+}
+
+.title{
+    text-align: center;
+}
+.buttons{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+button{
+    padding: 10px 30px;
+    border: 2px solid #0d253f;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    &:hover{
+        background-color:#0d253f ;
+        color: #fff;
+    }
+}
+.active{
+    background-color: #0d253f;
+    color: #fff;
+}
+
+.popup{
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    height: 90vh;
+    width: 90vw;
+    gap: 1rem;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    z-index: 1000;
+    transition: all 3sec ease-in-out;
+    .popupimage{
+        width: 40%;
+        img{
+            transition: all 3sec ease-in-out;
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .popupInfos{
+        width: 50%;
+    }
+    .close{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        z-index: 2;
+    }
+    .overview{
+        padding: 15px;
+    }
+    .title{
+        padding-top: 25px;
+    }
+}
+
+.ouvrirpage{
+    background-color: #0d253f;
+    color: red;
+}
+
+.container-info{
+    padding: 15px;
+}
+.Retour{
+   background-color: #0d253f;
+    color: rgb(251, 251, 251); 
+    padding: 10px 15px;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 5px;
+
+}
+.details-serie{
+    display: flex;
+    gap: 1rem;
+   
+}
+
+.nextPrev{
+    display: flex;
+    justify-content: space-between;
+    
+    button{
+        padding: 0 25px;
+        border-color: maroon;
+        &:hover{
+            background-color: maroon;
+            color: #fff;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+        }
+        i{
+            margin: 0;
+        }
+    }
+}
+
+.previous{
+    opacity: 0;
+}
+
+.pageDetail{
+    // padding-top: 25px;
+    font-size: 1.5rem;
+    color: maroon;
+    font-weight: bold;
+}
+
+
+.iflex{
+    display: flex;
+    justify-content: space-between;
+}
+.card-transaction{
+    border: 1px solid darkblue;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(52, 52, 165);
+    &:hover{
+        box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    }
+    &>div{
+        padding: 15px;
+    }
+    .identity{
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        .left-identity{
+            img{
+                width: 50px;
+                border-radius: 50%;
+            }
+            display: flex;
+            gap: 1rem;
+        }
+
+    }
+    .details{
+        
+        border-bottom: 1px solid gray;
+        border-top: 1px solid gray;
+        padding-left: 4rem;
+        display: flex;
+        gap: 3rem;
+        &>div{
+            width: 50%;
+        }
+            .details-rate{
+            flex-direction: column;
+        }
+        .sender-fee{
+            border-bottom: 1px solid gray;
+        }
+        
+        display: flex;
+
+        // Here
+        // overflow: hidden;
+        // opacity: 0;
+        //  max-height: 0;
+        transition: opacity 0.9s ease, max-height 0.1s ease;
+    }
+    .print{
+          
+        padding-left: 4rem;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding: 5px O;
+        align-items: center;
+        
+       img{
+        width: 35px;
+        display: inline-block;
+        transition: all 0.9s ease-in-out;
+        &:hover{
+            scale: (1.5);
+        }
+       }
+        transition: opacity 0.4s ease, max-height 0.4s ease;
+        display: none; 
+    }
+}
+
+// .display{
+//     display: flex !important;
+// }
+
+.wrapper{
+    width: 100vw;
+    height: 100vh;
+    background-color: aquamarine;
+    display: flex;
+    .main-aside{
+        width: 15%;
+        background-color: black;
+        color: #fff;
+        .logo{
+            font-family: "Matemasie", sans-serif;
+            font-size: 2rem;
+            padding: 1rem 0;
+        }
+        .links{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 15px;
+            a{
+                text-decoration: none;
+                color: gray ;
+                transition: all 0.2s ease-in-out;
+                &:hover{
+                    color: #fff;
+                    transform: translateX(15px);
+                }
+            }
+        }
+    }
+    .main-middle{
+        background-color: rgb(224, 13, 13);
+        width: 60%;
+    }
+    .middle-right{
+        width: 25%;
+        background-color: rgb(205, 179, 17);
+    }
+}
